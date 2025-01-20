@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>Task Manager</title>
+</head>
+<body>
+  <h1>Task Manager</h1>
+  
+
+  <form action="/add" method="POST">
+    <label for="title">Task Title:</label>
+    <input type="text" id="title" name="title" placeholder="Task Title" required>
+    
+    <label for="description">Task Description:</label>
+    <textarea id="description" name="description" placeholder="Task Description" required></textarea>
+    
+    <button type="submit">Add Task</button>
+  </form>
+
+  <!-- Liste des tâches -->
+  <ul>
+    <% tasks.forEach(task => { %>
+      <li>
+        <strong><%= task.title %></strong>: <%= task.description %>
+        <a href="/edit/<%= task._id %>">Edit</a>
+
+        <form action="/delete/<%= task._id %>" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
